@@ -1,51 +1,4 @@
-// Mobile Menu Toggle Functionality
-const mobileMenu = document.getElementById('mobile-menu');
-const navMenu = document.getElementById('nav-menu');
-
-// Toggle mobile menu
-mobileMenu.addEventListener('click', () => {
-  mobileMenu.classList.toggle('active');
-  navMenu.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-item a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('active');
-    navMenu.classList.remove('active');
-  });
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-  if (!mobileMenu.contains(e.target) && !navMenu.contains(e.target)) {
-    mobileMenu.classList.remove('active');
-    navMenu.classList.remove('active');
-  }
-});
-
-// Dark Mode Toggle Functionality
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
-const html = document.documentElement;
-
-// Check for saved theme preference or default to light mode
-const currentTheme = localStorage.getItem('theme') || 'light';
-html.setAttribute('data-theme', currentTheme);
-updateThemeIcon(currentTheme);
-
-themeToggle.addEventListener('click', () => {
-  const currentTheme = html.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
-  html.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  updateThemeIcon(newTheme);
-});
-
-function updateThemeIcon(theme) {
-  themeIcon.textContent = theme === 'dark' ? '☀' : '☾';
-}
+// Note: Navbar functionality (mobile menu, dark mode toggle) is now handled by navbar-loader.js
 
 // Scroll Up Button Functionality
 const scrollUpButton = document.getElementById('scrollUp');
@@ -67,15 +20,7 @@ scrollUpButton.addEventListener('click', () => {
   });
 });
 
-// Google Analytics Event Tracking for Theme Toggle
-themeToggle.addEventListener('click', () => {
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'theme_toggle', {
-      'event_category': 'UI',
-      'event_label': html.getAttribute('data-theme')
-    });
-  }
-});
+// Note: Theme toggle analytics tracking is now handled by navbar-loader.js
 
 // Google Analytics Event Tracking for Scroll Up
 scrollUpButton.addEventListener('click', () => {

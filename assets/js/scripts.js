@@ -1,3 +1,29 @@
+// Mobile Menu Toggle Functionality
+const mobileMenu = document.getElementById('mobile-menu');
+const navMenu = document.getElementById('nav-menu');
+
+// Toggle mobile menu
+mobileMenu.addEventListener('click', () => {
+  mobileMenu.classList.toggle('active');
+  navMenu.classList.toggle('active');
+});
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-item a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+    navMenu.classList.remove('active');
+  });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!mobileMenu.contains(e.target) && !navMenu.contains(e.target)) {
+    mobileMenu.classList.remove('active');
+    navMenu.classList.remove('active');
+  }
+});
+
 // Dark Mode Toggle Functionality
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
